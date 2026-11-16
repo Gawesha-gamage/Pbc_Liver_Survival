@@ -1,0 +1,80 @@
+# A tibble: 1 x 7
+  n_patients n_randomised n_not_randomised n_deaths n_transplants n_censored
+       <int>        <int>            <int>    <int>         <int>      <int>
+1        418          312              106      161            25        232
+# i 1 more variable: median_followup_years <dbl>
+Randomised patients: 312; complete for model: 312 (dropped 0)
+# A tibble: 2 x 8
+  trt                 n deaths age_mean female_pct bili_median albumin_median
+  <fct>           <int>  <int>    <dbl>      <dbl>       <dbl>          <dbl>
+1 Placebo           154     60     48.6       90.3         1.3           3.54
+2 D-penicillamine   158     65     51.4       86.7         1.4           3.56
+# i 1 more variable: protime_median <dbl>
+Overall median survival: 9.30 years
+Log-rank test, stage: p = 4.11e-15
+Log-rank test, treatment: p = 0.75
+Call:
+coxph(formula = Surv(years, event) ~ trt + age + sex + ascites + 
+    hepato + spiders + edema + log_bili + albumin + log_protime + 
+    stage, data = model_dat)
+
+  n= 312, number of events= 125 
+
+                        coef exp(coef)  se(coef)      z Pr(>|z|)    
+trtD-penicillamine -0.115273  0.891123  0.188115 -0.613  0.54002    
+age                 0.025981  1.026322  0.009625  2.699  0.00695 ** 
+sexMale             0.393581  1.482280  0.264311  1.489  0.13647    
+ascitesYes          0.291062  1.337848  0.308821  0.942  0.34594    
+hepatoYes           0.098317  1.103312  0.236182  0.416  0.67721    
+spidersYes          0.016113  1.016244  0.217234  0.074  0.94087    
+edema               0.783503  2.189128  0.311883  2.512  0.01200 *  
+log_bili            0.814121  2.257191  0.111417  7.307 2.73e-13 ***
+albumin            -0.763973  0.465812  0.270200 -2.827  0.00469 ** 
+log_protime         2.997595 20.037295  1.217141  2.463  0.01379 *  
+stageStage 2        1.429402  4.176199  1.055367  1.354  0.17560    
+stageStage 3        1.606905  4.987352  1.032611  1.556  0.11967    
+stageStage 4        1.729857  5.639850  1.045676  1.654  0.09807 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+                   exp(coef) exp(-coef) lower .95 upper .95
+trtD-penicillamine    0.8911    1.12218    0.6163    1.2884
+age                   1.0263    0.97435    1.0071    1.0459
+sexMale               1.4823    0.67464    0.8830    2.4884
+ascitesYes            1.3378    0.74747    0.7304    2.4506
+hepatoYes             1.1033    0.90636    0.6945    1.7528
+spidersYes            1.0162    0.98402    0.6639    1.5556
+edema                 2.1891    0.45680    1.1879    4.0341
+log_bili              2.2572    0.44303    1.8144    2.8081
+albumin               0.4658    2.14679    0.2743    0.7911
+log_protime          20.0373    0.04991    1.8442  217.7067
+stageStage 2          4.1762    0.23945    0.5278   33.0454
+stageStage 3          4.9874    0.20051    0.6590   37.7424
+stageStage 4          5.6398    0.17731    0.7264   43.7873
+
+Concordance= 0.855  (se = 0.019 )
+Likelihood ratio test= 208.2  on 13 df,   p=<2e-16
+Wald test            = 199.3  on 13 df,   p=<2e-16
+Score (logrank) test = 293.8  on 13 df,   p=<2e-16
+
+# A tibble: 12 x 4
+   term         chisq    df p_value
+   <chr>        <dbl> <dbl>   <dbl>
+ 1 trt          1.13      1  0.288 
+ 2 age          0.304     1  0.582 
+ 3 sex          0.245     1  0.62  
+ 4 ascites      0.281     1  0.596 
+ 5 hepato       0.159     1  0.691 
+ 6 spiders      0.108     1  0.742 
+ 7 edema        4.83      1  0.0279
+ 8 log_bili     0.912     1  0.34  
+ 9 albumin      0.72      1  0.396 
+10 log_protime  5.65      1  0.0175
+11 stage        5.51      3  0.138 
+12 GLOBAL      18.2      13  0.15  
+# A tibble: 2 x 6
+  model                                C_train C_test n_train n_test deaths_test
+  <chr>                                  <dbl>  <dbl>   <int>  <int>       <int>
+1 Multivariable Cox (all candidate va~   0.846  0.863     219     93          37
+2 Bilirubin only                         0.785  0.821     219     93          37
+Analysis complete. Outputs written to results/.

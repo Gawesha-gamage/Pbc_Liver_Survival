@@ -1,0 +1,13 @@
+term,chisq,df,p_value
+trt,1.13,1,0.288
+age,0.304,1,0.582
+sex,0.245,1,0.62
+ascites,0.281,1,0.596
+hepato,0.159,1,0.691
+spiders,0.108,1,0.742
+edema,4.83,1,0.0279
+log_bili,0.912,1,0.34
+albumin,0.72,1,0.396
+log_protime,5.65,1,0.0175
+stage,5.51,3,0.138
+GLOBAL,18.2,13,0.15

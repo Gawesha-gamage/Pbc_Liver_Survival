@@ -1,0 +1,3 @@
+model,C_train,C_test,n_train,n_test,deaths_test
+Multivariable Cox (all candidate variables),0.846,0.863,219,93,37
+Bilirubin only,0.785,0.821,219,93,37
